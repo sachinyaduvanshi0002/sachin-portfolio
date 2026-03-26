@@ -1,0 +1,142 @@
+:root {
+  --accent: #00b4ff;
+  --bg-dark: #0d0d0d;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --text-light: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.7);
+}
+
+/* Container */
+.experience-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background: radial-gradient(circle at top, var(--bg-dark), #000);
+  color: white;
+}
+
+/* Card */
+.experience-card {
+  width: 100%;
+  max-width: 1100px;
+  padding: 3rem;
+  border-radius: 18px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0, 255, 200, 0.05);
+}
+
+/* Title */
+.experience-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  color: #e5e7eb;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 40px; /* spacing fix */
+}
+
+/* LINE perfectly centered with dots */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 12px; /* 🔥 adjusted */
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(0, 180, 255, 0.3);
+}
+
+/* Item */
+.timeline-item {
+  position: relative;
+}
+
+/* DOT aligned with line */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -31px; /* 🔥 adjusted */
+  top: 22px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* Content Card */
+.timeline-content {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: 0.3s ease;
+}
+
+/* Hover */
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0,255,200,0.1);
+}
+
+/* Role */
+.timeline-role {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Company */
+.timeline-company {
+  color: var(--text-light);
+  margin: 8px 0;
+  font-weight: 700;
+}
+
+.timeline-duration {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-weight: 800;
+  background: rgba(0, 180, 255, 0.08);
+  border: 1px solid rgba(0, 180, 255, 0.4); 
+}
+
+/* Description */
+.timeline-desc {
+  margin-top: 10px;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+/* 🔥 Certificate button (underline removed) */
+.certificate-link {
+  display: inline-block;
+  margin-top: 6px;
+  margin-left: 6px;
+  font-size: 0.85rem;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-decoration: none; 
+  transition: 0.3s;
+}
+
+.certificate-link:hover {
+  background: var(--accent);
+  color: white;
+}

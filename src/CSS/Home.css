@@ -1,0 +1,245 @@
+.home-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+  align-items: center;
+  padding: 3rem 2rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Glow */
+.background-blur {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: #00d9f5;
+  filter: blur(160px);
+  top: 18%;
+  left: 68%;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Layout */
+.home-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  gap: 2rem;
+  flex-direction: row-reverse;
+}
+
+/* Photo */
+.photo-container {
+  position: relative;
+  flex: 0 0 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin-top: 60px;
+}
+
+.photo-ring {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 2px dashed var(--accent);
+  opacity: 0.3;
+  transform: translate(-50%, -50%);
+}
+
+.photo-frame {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 320px;
+  height: 320px;
+  box-shadow: 0 0 40px rgba(0,255,200,0.3);
+  border: 3px solid var(--accent);
+  position: relative;
+  z-index: 1;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info */
+.home-info {
+  max-width: 600px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  gap: 0.6rem;
+}
+
+/* Title */
+.home-title {
+  font-size: 2.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: -1px;
+  line-height: 1.2;         
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+  .home-title {
+    white-space: normal;
+    font-size: 2.2rem;
+    text-align: center;     
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(90deg, #00f5a0, #00d9f5, #7b61ff);
+
+  background-clip: text;              /* ✅ standard */
+  -webkit-background-clip: text;      /* ✅ for Chrome/Safari */
+
+  color: transparent;                 /* ✅ fallback */
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.home-subtitle {
+  font-size: 1.3rem;
+  margin-top: 6px;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Name highlight */
+.home-name {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Typing Text */
+.typing-effect {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  min-height: 24px; 
+}
+
+.home-info > * {
+  margin: 0;
+  margin-top: 0.8rem;
+}
+/* CTA */
+.cta-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, #00f5a0, #00d9f5);
+  color: black;
+}
+
+.secondary-btn {
+  border: 1px solid #00d9f5;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px #00d9f5;
+}
+
+/* Tags */
+.profession-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.profession-tag {
+  border: 1px solid var(--accent);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.05);
+}
+
+/* Cards */
+.info-cards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap; 
+}
+.info-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 12px 18px;
+  min-width: 160px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0,255,200,0.2);
+}
+
+/* Quick Links Section */
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* Title */
+.quick-links-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Icons Container */
+.quick-links-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+}
+
+/* Icons */
+.quick-link-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.quick-link-img:hover {
+  transform: translateY(-5px) scale(1.1);
+  filter: brightness(1.2) drop-shadow(0 0 10px var(--accent));
+}
