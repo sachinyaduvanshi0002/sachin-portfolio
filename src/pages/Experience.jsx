@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "../CSS/Experience.css";
+import "../CSS/experience.css";
 
 export default function Experience() {
   const experiences = [
