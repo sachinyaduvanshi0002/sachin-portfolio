@@ -17,8 +17,8 @@ export default function Home() {
     'Data Analyst',
     'Full Stack Developer',
     'SQL Developer',
-    'Data Visualization Enthusiast',
     'Problem Solver',
+    'Data Visualization Enthusiast',
   ]
 
   const [text, setText] = useState('')
