@@ -90,9 +90,9 @@ export default function Home() {
 
           {/* CTA */}
           <div className="cta-buttons">
-            <a href="/projects" className="btn primary-btn">🚀 View Projects</a>
-            <a href="/contact" className="btn secondary-btn">📩 Contact Me</a>
-            <a href="/resume" className="btn secondary-btn">📄 View Resume</a>
+            <a href="#projects" className="btn primary-btn">🚀 View Projects</a>
+            <a href="#contact" className="btn secondary-btn">📩 Contact Me</a>
+            <a href="#resume" className="btn secondary-btn">📄 View Resume</a>
           </div>
 
           {/* TAGS */}

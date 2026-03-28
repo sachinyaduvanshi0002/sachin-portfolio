@@ -1,32 +1,39 @@
-/* ---------- Header: smaller, left-aligned, no big gaps ---------- */
+/* ---------- 🔥 SKILLS HEADER (CENTER + PREMIUM) ---------- */
 .skills-header {
-  text-align: left;        /* align header to left */
-  margin: 10px 0 12px 4%;     /* remove big top/bottom gaps, small left offset to match orbs */
+  text-align: center;              /* ✅ center */
+  margin: 40px auto 20px;          /* balanced spacing */
   padding: 0;
-  max-width: calc(100% - 8%); 
+  max-width: 90%;
 }
 
+/* 🔥 TITLE */
 .skills-header h2 {
-  font-size: 1.25rem;      /* smaller title */
-  color: #00ffe0;
-  font-weight: 600;
-  margin: 0;               /* remove default margin so there's no extra gap */
-  line-height: 1.05;
+  font-size: 2rem;                 /* bigger */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+
+  background: linear-gradient(90deg, #00f5ff, #00ff88);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* 🔥 UNDERLINE (center glow line) */
 .underline {
-  width: 60px;
-  height: 2px;
-  background: #00ffe0;
-  margin: 6px 0 8px 0;     /* left aligned under title */
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #00f5ff, #00ff88);
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00f5ff;
 }
 
-/* subtitle (small & tight) */
+/* 🔥 SUBTITLE */
 .skills-header p {
-  color: #b0b0b0;
+  color: #aaa;
   font-size: 0.95rem;
   margin: 0;
-  padding: 0;
 }
 
 /* ---------- Orb area: narrower margins and reduced height ---------- */

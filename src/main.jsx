@@ -5,7 +5,12 @@ import App from './App'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
+  <BrowserRouter
+    future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+    }}
+  >    <App />
   </BrowserRouter>
 )
+

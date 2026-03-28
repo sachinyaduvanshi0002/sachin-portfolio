@@ -1,27 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { label: "Home", to: "/" },
-  { label: "Projects", to: "/projects" },
-  { label: "Experience", to: "/experience" },
-  { label: "Gallery", to: "/gallery" },
-  { label: "Skills", to: "/skills" },
-  { label: "Certificates", to: "/certificates" },
-  { label: "Blog", to: "/blog" },
-  { label: "Resume", to: "/resume" },
-  { label: "About Me", to: "/about" },
-  { label: "Contact", to: "/contact" },
+  { label: "Home", to: "#home" },
+  { label: "Projects", to: "#projects" },
+  { label: "Experience", to: "#experience" },
+  { label: "Gallery", to: "#gallery" },
+  { label: "Skills", to: "#skills" },
+  { label: "Certificates", to: "#certificates" },
+  { label: "Blog", to: "#blog" },
+  { label: "Resume", to: "#resume" },
+  { label: "About Me", to: "#about" },
+  { label: "Contact", to: "#contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [active, setActive] = useState("#home");
+
   const navRef = useRef(null);
   const linksRef = useRef(null);
 
-  // Check if links overflow nav width (to show hamburger)
+  // 🔥 Check overflow (mobile menu)
   const checkOverflow = () => {
     if (!navRef.current || !linksRef.current) return;
     setShowButton(linksRef.current.scrollWidth > navRef.current.offsetWidth);
@@ -33,9 +34,29 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", checkOverflow);
   }, []);
 
+  // 🔥 Scroll Spy (active section detect)
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = links.map((l) => document.querySelector(l.to));
+
+      sections.forEach((sec) => {
+        if (!sec) return;
+
+        const rect = sec.getBoundingClientRect();
+
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          setActive("#" + sec.id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      {/* --- Navbar --- */}
+      {/* 🔥 NAVBAR */}
       <nav
         ref={navRef}
         style={{
@@ -49,13 +70,11 @@ export default function Navbar() {
           borderBottom: "1px solid rgba(255,255,255,0.1)",
           background: "rgba(0,0,0,0.6)",
           backdropFilter: "blur(10px)",
-          fontFamily: "inherit",
         }}
       >
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <motion.div
-            className="logo"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 200 }}
@@ -67,7 +86,8 @@ export default function Navbar() {
           >
             SK
           </motion.div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+
+          <div>
             <h1 style={{ margin: 0, fontSize: 14 }}>Sachin Kumar</h1>
             <div style={{ fontSize: 12, color: "var(--muted)" }}>
               Full Stack Dev • Data Analyst
@@ -75,93 +95,65 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop links */}
+        {/* 🔥 Desktop Links */}
         <div
           ref={linksRef}
           style={{
             display: showButton ? "none" : "flex",
-            justifyContent: "center",
             gap: "2rem",
             alignItems: "center",
             flexGrow: 1,
+            justifyContent: "center",
           }}
         >
           {links.map((l) => (
-            <NavLink
+            <a
               key={l.to}
-              to={l.to}
-              end
+              href={l.to}
               style={{
-                position: "relative",
-                fontSize: "0.95rem",
                 textDecoration: "none",
-                color: "white",
+                color: active === l.to ? "var(--accent)" : "white",
+                fontSize: "0.95rem",
                 fontWeight: 500,
               }}
             >
-              {({ isActive }) => (
-                <motion.div
-                  whileHover={{
-                    scale: 1.1,
-                    color: "var(--accent)",
-                    textShadow: "0 0 8px var(--accent)",
-                  }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <motion.span
-                    animate={{ color: isActive ? "var(--accent)" : "white" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {l.label}
-                  </motion.span>
-                  {isActive && (
-                    <motion.div
-                      layoutId="underline"
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      style={{
-                        width: "70%",
-                        height: "2px",
-                        marginTop: "4px",
-                        borderRadius: "1px",
-                        backgroundColor: "var(--accent)",
-                        boxShadow: "0 0 6px var(--accent)",
-                      }}
-                    />
-                  )}
-                </motion.div>
-              )}
-            </NavLink>
+              <motion.span
+                animate={{
+                  scale: active === l.to ? 1.1 : 1,
+                  textShadow:
+                    active === l.to
+                      ? "0 0 8px var(--accent)"
+                      : "0 0 0px rgba(0,0,0,0)",
+                }}
+                whileHover={{
+                  scale: 1.1,
+                  textShadow: "0 0 10px var(--accent)",
+                }}
+              >
+                {l.label}
+              </motion.span>
+            </a>
           ))}
         </div>
 
-        {/* Hamburger */}
+        {/* 🔥 Hamburger */}
         {showButton && (
-          <div className="mobile-btn">
-            <button
-              style={{
-                background: "none",
-                border: "none",
-                color: "#fff",
-                fontSize: "1.8rem",
-                cursor: "pointer",
-                zIndex: 10000,
-              }}
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? "✕" : "☰"}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "#fff",
+              fontSize: "1.8rem",
+              cursor: "pointer",
+            }}
+          >
+            {isOpen ? "✕" : "☰"}
+          </button>
         )}
       </nav>
 
-      {/* --- Mobile Dropdown Menu --- */}
+      {/* 🔥 Mobile Menu */}
       <AnimatePresence>
         {isOpen && showButton && (
           <motion.div
@@ -175,16 +167,15 @@ export default function Navbar() {
               width: "100%",
               height: "100vh",
               background: "rgba(0,0,0,0.95)",
-              backdropFilter: "blur(12px)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               paddingTop: "4rem",
-              overflowY: "auto",
               zIndex: 9999,
             }}
           >
             <button
+              onClick={() => setIsOpen(false)}
               style={{
                 position: "absolute",
                 top: "1rem",
@@ -195,18 +186,17 @@ export default function Navbar() {
                 border: "none",
                 cursor: "pointer",
               }}
-              onClick={() => setIsOpen(false)}
             >
               ✕
             </button>
 
             {links.map((l) => (
-              <NavLink
+              <a
                 key={l.to}
-                to={l.to}
+                href={l.to}
                 onClick={() => setIsOpen(false)}
                 style={{
-                  color: "#fff",
+                  color: active === l.to ? "var(--accent)" : "#fff",
                   textDecoration: "none",
                   padding: "1rem 0",
                   width: "100%",
@@ -216,7 +206,7 @@ export default function Navbar() {
                 }}
               >
                 {l.label}
-              </NavLink>
+              </a>
             ))}
           </motion.div>
         )}

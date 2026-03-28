@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 :root{
   --bg:#050509;
   --card:#0f1114;
@@ -357,4 +361,61 @@ form h3 {
 .vote-btn.disagree:hover {
   background-color: #ff4c4c;
   color: #0b0e14;
+}
+
+/* 🔥 GLOBAL OVERFLOW FIX */
+html, body {
+  overflow-x: hidden;
+}
+
+/* 🔥 PREVENT WIDTH OVERFLOW */
+* {
+  max-width: 100%;
+}
+
+/* 🔥 HERO FIX (main issue yahi hai) */
+.hero-hero {
+  display: flex;
+  flex-wrap: wrap;          /* 🔥 important */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  overflow: hidden;         /* 🔥 extra safety */
+}
+
+/* 🔥 IMAGE FIX */
+.hero-photo {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* 🔥 TEXT FIX */
+.hero-intro {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* 🔥 MOBILE FIX */
+@media (max-width: 768px) {
+  .hero-hero {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-photo {
+    max-width: 240px;
+  }
+
+  .hero-intro {
+    padding: 0 10px;
+  }
 }

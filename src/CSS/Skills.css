@@ -1,6 +1,6 @@
 /* ---------- Header: smaller, left-aligned, no big gaps ---------- */
 .skills-header {
-  text-align: left;
+  text-align: center;
   margin: 10px 0 12px 4%;
   padding: 0;
   max-width: calc(100% - 8%);
