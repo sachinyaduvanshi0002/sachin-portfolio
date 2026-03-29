@@ -231,7 +231,7 @@ export default function Resume() {
         >
           <iframe
             src="/resume.pdf"
-            title="Kunj Desai Resume"
+            title="Sachin kumar Resume"
             style={{
               width: "100%",
               height: "650px",

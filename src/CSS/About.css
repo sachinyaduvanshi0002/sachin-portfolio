@@ -50,6 +50,7 @@
 
 .education-section {
   margin-top: 3rem;
+  min-height: auto;
 }
 
 .education-header {

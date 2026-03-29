@@ -8,6 +8,7 @@
 
 .certs-section {
   padding: 40px 0;
+  min-height: auto;
 }
 
 .certs-card {

@@ -3,42 +3,73 @@
   --muted: #aaa;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+
+  /* ALWAYS hide desktop links */
+  .nav-links {
+    display: none !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* ALWAYS show hamburger */
+  .mobile-btn {
+    display: block !important;
+  }
+
+  /* prevent overflow breaking navbar */
+  .nav {
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
+}
+
+/* 🔥 Tablet safe (optional but recommended) */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 1rem;  /* thoda compact */
+  }
+}
+
 /* --- Navbar Container --- */
 .nav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1.5rem;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  font-family: inherit;
+  backdrop-filter: blur(12px);
 }
 
-/* --- Left Section (Logo + Name) --- */
+/* --- Left Section --- */
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .logo {
-  font-weight: 600; /* slightly less bold */
-  font-size: 1.4rem;
+  font-weight: 600;
+  font-size: 1.3rem;
   color: var(--accent);
 }
 
 .nav-name h1 {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #fff;
 }
 
 .nav-tagline {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
 }
 
@@ -47,75 +78,120 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.8rem;
+  gap: 1.5rem;
   flex-grow: 1;
 }
 
+/* hover effect 🔥 */
 .nav-link-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  transition: 0.3s;
 }
 
+.nav-link-content:hover {
+  transform: scale(1.08);
+}
+
+/* underline glow */
 .underline {
   width: 70%;
   height: 2px;
   margin-top: 4px;
   border-radius: 1px;
-  background-color: var(--accent);
-  box-shadow: 0 0 6px var(--accent);
+  background: linear-gradient(90deg, #00f5ff, #00ff88);
+  box-shadow: 0 0 8px var(--accent);
 }
 
-/* --- Mobile Menu Button --- */
+/* --- Mobile Button --- */
+.mobile-btn {
+  display: none;
+}
+
 .mobile-btn button {
   background: none;
   border: none;
   color: #fff;
   font-size: 1.8rem;
   cursor: pointer;
-  z-index: 9999;
 }
 
 /* --- Mobile Dropdown --- */
 .mobile-dropdown {
   position: fixed;
-  top: 0;          /* start from top */
+  top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;   /* cover entire viewport */
+  height: 100vh;
   background: rgba(0,0,0,0.95);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 4rem; /* leave space for close button */
+  padding-top: 4rem;
   overflow-y: auto;
   z-index: 9999;
 }
 
-
 .mobile-dropdown a {
   color: #fff;
   text-decoration: none;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  font-size: 14px;
-  transition: background 0.2s;
-  z-index: 9999;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 15px;
+  transition: 0.3s;
 }
 
 .mobile-dropdown a:hover {
-  background: rgba(0,180,255,0.1);
+  background: rgba(0,180,255,0.15);
 }
 
-.nav-menu {
-  position: fixed; /* absolute can get blocked by parent */
-  top: 0;
+/* 🔥 RESPONSIVE FIX (MAIN FIX) */
+@media (max-width: 768px) {
+
+  /* hide links */
+  .nav-links {
+    display: none !important;
+  }
+
+  /* show hamburger */
+  .mobile-btn {
+    display: block;
+  }
+
+  /* navbar compact */
+  .nav {
+    padding: 0.7rem 1rem;
+  }
+
+  .nav-name h1 {
+    font-size: 12px;
+  }
+
+  .nav-tagline {
+    font-size: 10px;
+  }
+}
+
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
   left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: 0.3s ease;
+}
+
+.nav-links a.active::after {
   width: 100%;
-  height: 100vh; /* cover full screen */
-  z-index: 1000; /* already done */
 }

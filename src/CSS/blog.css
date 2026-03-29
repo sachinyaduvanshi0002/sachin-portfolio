@@ -3,6 +3,7 @@
   padding: 3rem 8%;
   color: white;
   text-align: center;
+  min-height: auto;
 }
 
 .blog-title {

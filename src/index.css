@@ -1,6 +1,9 @@
 html {
   scroll-behavior: smooth;
 }
+html, body {
+  overflow-x: hidden;
+}
 
 :root{
   --bg:#050509;
@@ -257,7 +260,7 @@ form h3 {
   background: radial-gradient(circle at top left, #0b0e14, #000);
   color: #e4e7ec;
   padding: 80px 10%;
-  min-height: 100vh;
+  min-height: auto;
   text-align: center;
   font-family: 'Poppins', sans-serif;
 }
@@ -418,4 +421,12 @@ html, body {
   .hero-intro {
     padding: 0 10px;
   }
+}
+
+/* 🔥 REMOVE EXTRA GAP BETWEEN ALL SECTIONS */
+section {
+  min-height: auto !important;
+  margin: 0;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
