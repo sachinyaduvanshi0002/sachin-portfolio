@@ -22,17 +22,17 @@ export default function Navbar() {
   const navRef = useRef(null);
   const linksRef = useRef(null);
 
-  // 🔥 Check overflow
-const checkOverflow = () => {
-  if (window.innerWidth < 768) {
-    setShowButton(true);   // 🔥 force mobile menu
-  } else {
-    if (!navRef.current || !linksRef.current) return;
-    setShowButton(
-      linksRef.current.scrollWidth > navRef.current.offsetWidth
-    );
-  }
-};
+  // 🔥 Check overflow (unchanged)
+  const checkOverflow = () => {
+    if (window.innerWidth < 768) {
+      setShowButton(true);
+    } else {
+      if (!navRef.current || !linksRef.current) return;
+      setShowButton(
+        linksRef.current.scrollWidth > navRef.current.offsetWidth
+      );
+    }
+  };
 
   useEffect(() => {
     checkOverflow();
@@ -40,34 +40,44 @@ const checkOverflow = () => {
     return () => window.removeEventListener("resize", checkOverflow);
   }, []);
 
-  // 🔥 Scroll Spy
+  // 🔥 Scroll Spy (unchanged)
   useEffect(() => {
     const handleScroll = () => {
-  const sections = links.map((l) => document.querySelector(l.to));
+      const sections = links.map((l) => document.querySelector(l.to));
 
-  sections.forEach((sec) => {
-    if (!sec) return;
+      sections.forEach((sec) => {
+        if (!sec) return;
 
-    const rect = sec.getBoundingClientRect();
+        const rect = sec.getBoundingClientRect();
 
-    if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
-      setActive("#" + sec.id);
-    }
-  });
-};
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+          setActive("#" + sec.id);
+        }
+      });
+    };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔥 Smooth Scroll Function
+  // 🔥 FIXED Smooth Scroll Function
   const handleClick = (id) => {
     setActive(id);
     setIsOpen(false);
 
     const el = document.querySelector(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      const navbarHeight = navRef.current?.offsetHeight || 70;
+
+      const y =
+        el.getBoundingClientRect().top +
+        window.pageYOffset -
+        navbarHeight;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -75,21 +85,21 @@ const checkOverflow = () => {
     <>
       {/* 🔥 NAVBAR */}
       <nav
-  ref={navRef}
-  style={{
-    position: "sticky",
-    top: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexWrap: "wrap",   // 🔥 ADD THIS
-    padding: "1rem 2rem",
-    borderBottom: "1px solid rgba(255,255,255,0.1)",
-    background: "rgba(0,0,0,0.6)",
-    backdropFilter: "blur(10px)",
-  }}
->
+        ref={navRef}
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          padding: "1rem 2rem",
+          borderBottom: "1px solid rgba(255,255,255,0.1)",
+          background: "rgba(0,0,0,0.6)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <motion.div
@@ -113,17 +123,17 @@ const checkOverflow = () => {
           </div>
         </div>
 
-        {/* 🔥 Desktop Links */}
+        {/* Desktop Links */}
         <div
-ref={linksRef}
-style={{
-  display: showButton ? "none" : "flex",
-  gap: "1.5rem",
-  alignItems: "center",
-  flexGrow: 1,              // 🔥 add
-  justifyContent: "center", // 🔥 change
-}}
->
+          ref={linksRef}
+          style={{
+            display: showButton ? "none" : "flex",
+            gap: "1.5rem",
+            alignItems: "center",
+            flexGrow: 1,
+            justifyContent: "center",
+          }}
+        >
           {links.map((l) => (
             <a
               key={l.to}
@@ -177,10 +187,10 @@ style={{
           ))}
         </div>
 
-        {/* 🔥 Hamburger */}
+        {/* Hamburger */}
         {showButton && (
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen((prev) => !prev)} // 🔥 FIX
             style={{
               background: "none",
               border: "none",
@@ -194,7 +204,7 @@ style={{
         )}
       </nav>
 
-      {/* 🔥 Mobile Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && showButton && (
           <motion.div
@@ -213,6 +223,7 @@ style={{
               alignItems: "center",
               paddingTop: "4rem",
               zIndex: 9999,
+              pointerEvents: "auto", // 🔥 FIX
             }}
           >
             <button
