@@ -22,25 +22,21 @@ export default function Navbar() {
   const navRef = useRef(null);
   const linksRef = useRef(null);
 
-  // 🔥 Check overflow (unchanged)
-  const checkOverflow = () => {
-    if (window.innerWidth < 768) {
-      setShowButton(true);
-    } else {
-      if (!navRef.current || !linksRef.current) return;
-      setShowButton(
-        linksRef.current.scrollWidth > navRef.current.offsetWidth
-      );
-    }
-  };
-
+  // 🔥 Mobile detect
   useEffect(() => {
-    checkOverflow();
-    window.addEventListener("resize", checkOverflow);
-    return () => window.removeEventListener("resize", checkOverflow);
+    const check = () => {
+      if (window.innerWidth < 768) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
   }, []);
 
-  // 🔥 Scroll Spy (unchanged)
+  // 🔥 Scroll spy
   useEffect(() => {
     const handleScroll = () => {
       const sections = links.map((l) => document.querySelector(l.to));
@@ -60,24 +56,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔥 FIXED Smooth Scroll Function
+  // 🔥 SAFE CLICK HANDLER
   const handleClick = (id) => {
     setActive(id);
     setIsOpen(false);
 
-    const el = document.querySelector(id);
-    if (el) {
-      const navbarHeight = navRef.current?.offsetHeight || 70;
+    try {
+      const el = document.querySelector(id);
 
-      const y =
-        el.getBoundingClientRect().top +
-        window.pageYOffset -
-        navbarHeight;
+      if (!el) {
+        console.log("Element not found:", id);
+        return;
+      }
 
-      window.scrollTo({
-        top: y,
+      el.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
+    } catch (err) {
+      console.log("Scroll error:", err);
     }
   };
 
@@ -89,7 +86,7 @@ export default function Navbar() {
         style={{
           position: "sticky",
           top: 0,
-          zIndex: 100,
+          zIndex: 1000,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -124,73 +121,42 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div
-          ref={linksRef}
-          style={{
-            display: showButton ? "none" : "flex",
-            gap: "1.5rem",
-            alignItems: "center",
-            flexGrow: 1,
-            justifyContent: "center",
-          }}
-        >
-          {links.map((l) => (
-            <a
-              key={l.to}
-              href={l.to}
-              onClick={(e) => {
-                e.preventDefault();
-                handleClick(l.to);
-              }}
-              style={{
-                textDecoration: "none",
-                color: active === l.to ? "var(--accent)" : "white",
-                fontSize: "0.95rem",
-                fontWeight: 500,
-              }}
-            >
-              <motion.span
+        {!showButton && (
+          <div
+            ref={linksRef}
+            style={{
+              display: "flex",
+              gap: "1.5rem",
+              alignItems: "center",
+              flexGrow: 1,
+              justifyContent: "center",
+            }}
+          >
+            {links.map((l) => (
+              <a
+                key={l.to}
+                href={l.to}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClick(l.to);
+                }}
                 style={{
-                  position: "relative",
-                  display: "inline-block",
-                }}
-                animate={{
-                  scale: active === l.to ? 1.1 : 1,
-                  textShadow:
-                    active === l.to
-                      ? "0 0 8px var(--accent)"
-                      : "none",
-                }}
-                whileHover={{
-                  scale: 1.1,
-                  textShadow: "0 0 10px var(--accent)",
+                  textDecoration: "none",
+                  color: active === l.to ? "var(--accent)" : "white",
+                  fontSize: "0.95rem",
+                  fontWeight: 500,
                 }}
               >
                 {l.label}
-
-                {active === l.to && (
-                  <motion.div
-                    layoutId="underline"
-                    style={{
-                      position: "absolute",
-                      bottom: -5,
-                      left: 0,
-                      width: "100%",
-                      height: "2px",
-                      background: "var(--accent)",
-                      borderRadius: "2px",
-                    }}
-                  />
-                )}
-              </motion.span>
-            </a>
-          ))}
-        </div>
+              </a>
+            ))}
+          </div>
+        )}
 
         {/* Hamburger */}
         {showButton && (
           <button
-            onClick={() => setIsOpen((prev) => !prev)} // 🔥 FIX
+            onClick={() => setIsOpen((prev) => !prev)}
             style={{
               background: "none",
               border: "none",
@@ -199,18 +165,18 @@ export default function Navbar() {
               cursor: "pointer",
             }}
           >
-            {isOpen ? "✕" : "☰"}
+            ☰
           </button>
         )}
       </nav>
 
-      {/* Mobile Menu */}
+      {/* 🔥 MOBILE MENU */}
       <AnimatePresence>
         {isOpen && showButton && (
           <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             style={{
               position: "fixed",
               top: 0,
@@ -221,27 +187,12 @@ export default function Navbar() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              paddingTop: "4rem",
+              justifyContent: "center",
+              gap: "1.5rem",
               zIndex: 9999,
-              pointerEvents: "auto", // 🔥 FIX
+              pointerEvents: "auto",
             }}
           >
-            <button
-              onClick={() => setIsOpen(false)}
-              style={{
-                position: "absolute",
-                top: "1rem",
-                right: "1rem",
-                fontSize: "2rem",
-                color: "#fff",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              ✕
-            </button>
-
             {links.map((l) => (
               <a
                 key={l.to}
@@ -252,12 +203,8 @@ export default function Navbar() {
                 }}
                 style={{
                   color: active === l.to ? "var(--accent)" : "#fff",
+                  fontSize: 18,
                   textDecoration: "none",
-                  padding: "1rem 0",
-                  width: "100%",
-                  textAlign: "center",
-                  fontSize: 16,
-                  borderBottom: "1px solid rgba(255,255,255,0.05)",
                 }}
               >
                 {l.label}
