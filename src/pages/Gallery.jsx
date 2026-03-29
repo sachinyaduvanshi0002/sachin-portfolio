@@ -95,6 +95,7 @@ export default function Gallery() {
       initial="hidden"
       animate="visible"
       exit="hidden"
+      id="gallery"
     >
       {/* 🌟 Title */}
       <motion.h2 className="gallery-title" variants={childVariants}>

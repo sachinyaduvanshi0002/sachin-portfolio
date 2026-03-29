@@ -1,3 +1,7 @@
+section {
+  scroll-margin-top: 90px; /* navbar height */
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -15,7 +19,12 @@ html, body {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 *{box-sizing:border-box}
-html,body,#root{height:100%}
+
+html,body,#root{
+  height:100%;
+  overflow-x: hidden;
+}
+
 body{
   margin:0;
   background: radial-gradient(800px 500px at 10% 10%, rgba(124,58,237,0.08), transparent 10%),

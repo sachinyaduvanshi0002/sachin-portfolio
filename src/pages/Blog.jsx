@@ -66,6 +66,7 @@ export default function Blog() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
+      id="blog"
     >
       <motion.h2
         className="blog-title"

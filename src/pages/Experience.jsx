@@ -31,7 +31,7 @@ export default function Experience() {
   ];
 
   return (
-    <section className="experience-container">
+    <section id="experience" className="experience-container">
       <div className="experience-card">
         <h1 className="experience-title">Experience</h1>
 

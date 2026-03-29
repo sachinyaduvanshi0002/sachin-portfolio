@@ -22,81 +22,78 @@ export default function Navbar() {
   const navRef = useRef(null);
   const linksRef = useRef(null);
 
-  // 🔥 Mobile detect
+  // 🔥 Check overflow
+const checkOverflow = () => {
+  if (window.innerWidth < 768) {
+    setShowButton(true);   // 🔥 force mobile menu
+  } else {
+    if (!navRef.current || !linksRef.current) return;
+    setShowButton(
+      linksRef.current.scrollWidth > navRef.current.offsetWidth
+    );
+  }
+};
+
   useEffect(() => {
-    const check = () => {
-      if (window.innerWidth < 768) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    checkOverflow();
+    window.addEventListener("resize", checkOverflow);
+    return () => window.removeEventListener("resize", checkOverflow);
   }, []);
 
-  // 🔥 Scroll spy
+  // 🔥 Scroll Spy
   useEffect(() => {
     const handleScroll = () => {
-      const sections = links.map((l) => document.querySelector(l.to));
+  const sections = links.map((l) => document.querySelector(l.to));
 
-      sections.forEach((sec) => {
-        if (!sec) return;
+  sections.forEach((sec) => {
+    if (!sec) return;
 
-        const rect = sec.getBoundingClientRect();
+    const rect = sec.getBoundingClientRect();
 
-        if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
-          setActive("#" + sec.id);
-        }
-      });
-    };
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+      setActive("#" + sec.id);
+    }
+  });
+};
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔥 SAFE CLICK HANDLER
-  const handleClick = (id) => {
-    setActive(id);
-    setIsOpen(false);
+  // 🔥 Smooth Scroll Function
+const handleClick = (id) => {
+  setActive(id);
+  setIsOpen(false);
 
-    try {
-      const el = document.querySelector(id);
+  const el = document.querySelector(id);
 
-      if (!el) {
-        console.log("Element not found:", id);
-        return;
-      }
-
-      el.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } catch (err) {
-      console.log("Scroll error:", err);
-    }
-  };
+  if (el) {
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};;
 
   return (
     <>
       {/* 🔥 NAVBAR */}
       <nav
-        ref={navRef}
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 1000,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          padding: "1rem 2rem",
-          borderBottom: "1px solid rgba(255,255,255,0.1)",
-          background: "rgba(0,0,0,0.6)",
-          backdropFilter: "blur(10px)",
-        }}
-      >
+  ref={navRef}
+  style={{
+    position: "sticky",
+    top: 0,
+    zIndex: 100,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",   // 🔥 ADD THIS
+    padding: "1rem 2rem",
+    borderBottom: "1px solid rgba(255,255,255,0.1)",
+    background: "rgba(0,0,0,0.6)",
+    backdropFilter: "blur(10px)",
+  }}
+>
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <motion.div
@@ -120,43 +117,74 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Links */}
-        {!showButton && (
-          <div
-            ref={linksRef}
-            style={{
-              display: "flex",
-              gap: "1.5rem",
-              alignItems: "center",
-              flexGrow: 1,
-              justifyContent: "center",
-            }}
-          >
-            {links.map((l) => (
-              <a
-                key={l.to}
-                href={l.to}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick(l.to);
-                }}
+        {/* 🔥 Desktop Links */}
+        <div
+ref={linksRef}
+style={{
+  display: showButton ? "none" : "flex",
+  gap: "1.5rem",
+  alignItems: "center",
+  flexGrow: 1,              // 🔥 add
+  justifyContent: "center", // 🔥 change
+}}
+>
+          {links.map((l) => (
+            <a
+              key={l.to}
+              href={l.to}
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick(l.to);
+              }}
+              style={{
+                textDecoration: "none",
+                color: active === l.to ? "var(--accent)" : "white",
+                fontSize: "0.95rem",
+                fontWeight: 500,
+              }}
+            >
+              <motion.span
                 style={{
-                  textDecoration: "none",
-                  color: active === l.to ? "var(--accent)" : "white",
-                  fontSize: "0.95rem",
-                  fontWeight: 500,
+                  position: "relative",
+                  display: "inline-block",
+                }}
+                animate={{
+                  scale: active === l.to ? 1.1 : 1,
+                  textShadow:
+                    active === l.to
+                      ? "0 0 8px var(--accent)"
+                      : "none",
+                }}
+                whileHover={{
+                  scale: 1.1,
+                  textShadow: "0 0 10px var(--accent)",
                 }}
               >
                 {l.label}
-              </a>
-            ))}
-          </div>
-        )}
 
-        {/* Hamburger */}
+                {active === l.to && (
+                  <motion.div
+                    layoutId="underline"
+                    style={{
+                      position: "absolute",
+                      bottom: -5,
+                      left: 0,
+                      width: "100%",
+                      height: "2px",
+                      background: "var(--accent)",
+                      borderRadius: "2px",
+                    }}
+                  />
+                )}
+              </motion.span>
+            </a>
+          ))}
+        </div>
+
+        {/* 🔥 Hamburger */}
         {showButton && (
           <button
-            onClick={() => setIsOpen((prev) => !prev)}
+            onClick={() => setIsOpen(!isOpen)}
             style={{
               background: "none",
               border: "none",
@@ -165,18 +193,18 @@ export default function Navbar() {
               cursor: "pointer",
             }}
           >
-            ☰
+            {isOpen ? "✕" : "☰"}
           </button>
         )}
       </nav>
 
-      {/* 🔥 MOBILE MENU */}
+      {/* 🔥 Mobile Menu */}
       <AnimatePresence>
         {isOpen && showButton && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
             style={{
               position: "fixed",
               top: 0,
@@ -187,12 +215,26 @@ export default function Navbar() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
-              gap: "1.5rem",
+              paddingTop: "4rem",
               zIndex: 9999,
-              pointerEvents: "auto",
             }}
           >
+            <button
+              onClick={() => setIsOpen(false)}
+              style={{
+                position: "absolute",
+                top: "1rem",
+                right: "1rem",
+                fontSize: "2rem",
+                color: "#fff",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              ✕
+            </button>
+
             {links.map((l) => (
               <a
                 key={l.to}
@@ -203,8 +245,12 @@ export default function Navbar() {
                 }}
                 style={{
                   color: active === l.to ? "var(--accent)" : "#fff",
-                  fontSize: 18,
                   textDecoration: "none",
+                  padding: "1rem 0",
+                  width: "100%",
+                  textAlign: "center",
+                  fontSize: 16,
+                  borderBottom: "1px solid rgba(255,255,255,0.05)",
                 }}
               >
                 {l.label}
