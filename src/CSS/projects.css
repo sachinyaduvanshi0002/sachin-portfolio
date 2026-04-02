@@ -1,20 +1,37 @@
 /* Projects.css */
 
 .projects-container {
-  padding: 30px;
-  background: rgba(255,255,255,0.03);
-  border-radius: 16px;
+  padding: 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+  border-radius: 24px;
+  border: 1px solid rgba(148, 197, 255, 0.12);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+}
+
+#projects {
+  scroll-margin-top: 90px;
+}
+@media (max-width: 768px) {
+  #projects {
+    scroll-margin-top: 50px;
+  }
+}
+@media (max-width: 1024px) {
+  #projects {
+    scroll-margin-top: 120px;
+  }
 }
 
 .projects-title {
   font-size: 2.5rem; /* text-4xl */
-  font-weight: 600;
-  color: #06b6d4; /* cyan-400 */
+  font-weight: 800;
+  color: #eef4ff;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
 }
 
 .projects-subtitle {
-  color: #9aa0a6; /* text-gray-400 */
+  color: rgba(232, 240, 255, 0.72); /* text-gray-400 */
   margin-bottom: 2.5rem;
 }
 
@@ -25,12 +42,12 @@
 }
 
 .project-card {
-  background: linear-gradient(145deg, rgba(20,20,20,0.9), rgba(10,10,10,0.9));
-  border: 1px solid rgba(0,255,255,0.1);
-  border-radius: 16px;
-  padding: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+  border: 1px solid rgba(148, 197, 255, 0.12);
+  border-radius: 20px;
+  padding: 18px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,255,255,0.08);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
   display: flex;
   flex-direction: column;
 }
@@ -44,7 +61,7 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .project-content {
@@ -53,13 +70,13 @@
 
 .project-title {
   font-size: 18px;
-  color: #0ea5e9;
+  color: #ffffff;
   margin-bottom: 6px;
 }
 
 .project-desc {
   font-size: 14px;
-  color: #bbb;
+  color: rgba(232, 240, 255, 0.72);
   margin-bottom: 8px;
   line-height: 1.6;
 }
@@ -72,12 +89,12 @@
 }
 
 .tech-badge {
-  background: rgba(0,255,255,0.05);
-  border: 1px solid rgba(0,255,255,0.1);
-  padding: 3px 8px;
-  border-radius: 6px;
+  background: rgba(92, 225, 255, 0.08);
+  border: 1px solid rgba(92, 225, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 999px;
   font-size: 12px;
-  color: #aaf;
+  color: #dff7ff;
 }
 
 .project-links {
@@ -91,19 +108,19 @@
   align-items: center;
   gap: 5px;
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 13px;
   text-decoration: none;
   cursor: pointer;
 }
 
 .code-btn {
-  background: rgba(255,255,255,0.05);
-  color: #0ea5e9;
-  border: 1px solid rgba(0,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  color: #dff7ff;
+  border: 1px solid rgba(92, 225, 255, 0.14);
 }
 
 .live-btn {
-  background: linear-gradient(90deg, #06b6d4, #0891b2);
-  color: #fff;
+  background: linear-gradient(135deg, #5ce1ff, #7c5cff);
+  color: #04101b;
 }

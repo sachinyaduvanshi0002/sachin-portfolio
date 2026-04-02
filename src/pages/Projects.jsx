@@ -72,7 +72,7 @@ export default function Projects() {
       id="projects"
     >
       <div className="card" style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 16, padding: 30 }}>
-        <motion.h2
+        <motion.h2 id="projects"
           className="text-4xl font-semibold text-cyan-400 mb-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

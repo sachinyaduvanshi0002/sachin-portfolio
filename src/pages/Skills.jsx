@@ -123,7 +123,9 @@ export default function Skills() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h2 className="text-5xl text-cyan-400 font-semibold mb-3">My Skills</h2>
+        <h2 id="skills" className="text-5xl text-cyan-400 font-semibold mb-3">
+          My Skills
+        </h2>
         <div className="w-28 h-[2px] bg-cyan-400 mx-auto mb-6"></div>
         <p className="text-gray-400 text-lg max-w-xl mx-auto">
           ✨ Technical expertise blended with creativity — explore my core competencies below.

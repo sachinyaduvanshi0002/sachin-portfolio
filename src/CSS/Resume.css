@@ -3,21 +3,22 @@
 }
 
 .resume-card {
-  background: #0b0b0b;
-  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border-radius: 24px;
   padding: 40px 30px;
   color: #e5e5e5;
-  box-shadow: 0 0 25px rgba(0, 153, 255, 0.1);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(148, 197, 255, 0.12);
 }
 
 .resume-title {
   font-size: 28px;
-  color: #00b4ff;
+  color: #eef4ff;
   margin-bottom: 12px;
 }
 
 .resume-subtitle {
-  color: #aaa;
+  color: rgba(232, 240, 255, 0.72);
   margin-bottom: 25px;
 }
 
@@ -27,49 +28,50 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 20px;
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.04);
   padding: 24px 20px;
-  border-radius: 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 197, 255, 0.12);
 }
 
 .profile-info h3 {
   font-size: 24px;
-  color: #00b4ff;
+  color: #9feaff;
   margin-bottom: 4px;
 }
 
 .profile-info p {
-  color: #ccc;
+  color: rgba(232, 240, 255, 0.72);
   margin: 4px 0;
   font-size: 14px;
 }
 
 .profile-summary {
-  background: linear-gradient(135deg, #00b4ff44, #0b0b0b);
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(92, 225, 255, 0.14), rgba(124, 92, 255, 0.12));
+  border-radius: 18px;
   padding: 14px 20px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(148, 197, 255, 0.14);
   max-width: 360px;
   font-size: 14px;
   line-height: 1.6;
 }
 
 .profile-summary strong {
-  color: #00b4ff;
+  color: #dff7ff;
 }
 
 .resume-section {
   margin-top: 40px;
-  border-radius: 12px;
+  border-radius: 18px;
   padding: 20px 24px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(148, 197, 255, 0.12);
   min-height: auto;
 }
 
 .resume-section h4 {
   font-size: 20px;
-  color: #00b4ff;
+  color: #9feaff;
   margin-bottom: 12px;
 }
 
@@ -81,7 +83,7 @@
 }
 
 .resume-section li span {
-  color: #aaa;
+  color: rgba(232, 240, 255, 0.68);
 }
 
 .skills-list {
@@ -93,9 +95,9 @@
 .skills-list span {
   background: rgba(255,255,255,0.05);
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 13px;
-  color: #ccc;
+  color: rgba(232, 240, 255, 0.84);
 }
 
 .resume-links {
@@ -106,7 +108,7 @@
 }
 
 .resume-links a {
-  color: #ccc;
+  color: rgba(232, 240, 255, 0.8);
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
@@ -117,18 +119,18 @@
   height: 650px;
   border: none;
   background: #111;
-  border-radius: 12px;
+  border-radius: 18px;
   overflow: hidden;
 }
 
 .resume-download {
   display: inline-block;
   margin-top: 20px;
-  background: #00b4ff;
-  color: #fff;
+  background: linear-gradient(135deg, #5ce1ff, #7c5cff);
+  color: #04101b;
   padding: 10px 22px;
-  border-radius: 8px;
+  border-radius: 999px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: 0.3px;
 }

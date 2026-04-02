@@ -1,6 +1,6 @@
 :root {
-  --accent: #00b4ff;
-  --accent-2: #00ffe0;
+  --accent: #5ce1ff;
+  --accent-2: #7c5cff;
 }
 
 .contact-section {
@@ -10,14 +10,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: radial-gradient(circle at 25% 25%, rgba(0,255,200,0.08), transparent 80%);
+  background: radial-gradient(circle at 25% 25%, rgba(92,225,255,0.12), transparent 70%);
   color: #fff;
-  padding: 2rem 1.5rem 4rem;
+  padding: 3rem 1.2rem 4.5rem;
   text-align: center;
 }
 
 .contact-title {
-  font-size: 2.6rem;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   margin: 1.5rem 0 0.5rem;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
@@ -50,9 +50,10 @@
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--accent);
-  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(92, 225, 255, 0.3);
+  background: rgba(255,255,255,0.04);
   padding: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 
 .contact-form {
@@ -66,9 +67,9 @@
 .contact-form input,
 .contact-form textarea {
   padding: 12px;
-  border-radius: 8px;
-  border: none;
-  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(148, 197, 255, 0.12);
+  background: rgba(255,255,255,0.04);
   color: #fff;
   outline: none;
   font-size: 1rem;
@@ -77,16 +78,17 @@
 
 .contact-btn {
   padding: 12px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-weight: 600;
+  border-radius: 999px;
+  color: #04101b;
+  font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 14px 30px rgba(92, 225, 255, 0.16);
 }
 
 .contact-status {
   margin-top: 10px;
-  color: #0ff;
+  color: #9feaff;
   font-weight: 500;
 }

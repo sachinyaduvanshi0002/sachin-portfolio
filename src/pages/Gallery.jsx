@@ -98,7 +98,7 @@ export default function Gallery() {
       id="gallery"
     >
       {/* 🌟 Title */}
-      <motion.h2 className="gallery-title" variants={childVariants}>
+      <motion.h2 id="gallery" className="gallery-title" variants={childVariants}>
         Gallery
       </motion.h2>
 

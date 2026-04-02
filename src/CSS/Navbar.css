@@ -1,197 +1,207 @@
 :root {
-  --accent: #00b4ff;
-  --muted: #aaa;
+  --nav-bg: rgba(5, 10, 20, 0.66);
+  --nav-border: rgba(255, 255, 255, 0.08);
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
-@media (max-width: 768px) {
-
-  /* ALWAYS hide desktop links */
-  .nav-links {
-    display: none !important;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  /* ALWAYS show hamburger */
-  .mobile-btn {
-    display: block !important;
-  }
-
-  /* prevent overflow breaking navbar */
-  .nav {
-    overflow: hidden;
-    flex-wrap: wrap;
-  }
-}
-
-/* 🔥 Tablet safe (optional but recommended) */
-@media (max-width: 1024px) {
-  .nav-links {
-    gap: 1rem;  /* thoda compact */
-  }
-}
-
-/* --- Navbar Container --- */
-.nav {
+.nav-shell {
   position: sticky;
   top: 0;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(12px);
+  gap: 1rem;
+  padding: 0.95rem 1.4rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent), var(--nav-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
 }
 
-/* --- Left Section --- */
-.nav-left {
+.brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.85rem;
+  min-width: 220px;
 }
 
-.logo {
-  font-weight: 600;
-  font-size: 1.3rem;
-  color: var(--accent);
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #04101b;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 12px 30px rgba(92, 225, 255, 0.22);
 }
 
-.nav-name h1 {
+.brand-copy h1 {
   margin: 0;
-  font-size: 13px;
-  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
-.nav-tagline {
-  font-size: 11px;
+.brand-copy div {
   color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 0.18rem;
 }
 
-/* --- Navigation Links --- */
 .nav-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  flex-grow: 1;
+  gap: 0.4rem;
+  flex: 1;
+  flex-wrap: wrap;
 }
 
-/* hover effect 🔥 */
-.nav-link-content {
-  display: flex;
-  flex-direction: column;
+.nav-link {
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  cursor: pointer;
-  transition: 0.3s;
+  justify-content: center;
+  padding: 0.72rem 0.9rem;
+  border-radius: 999px;
+  color: rgba(235, 243, 255, 0.74);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.nav-link-content:hover {
-  transform: scale(1.08);
-}
-
-/* underline glow */
-.underline {
-  width: 70%;
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.42rem;
+  width: 0;
   height: 2px;
-  margin-top: 4px;
-  border-radius: 1px;
-  background: linear-gradient(90deg, #00f5ff, #00ff88);
-  box-shadow: 0 0 8px var(--accent);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: translateX(-50%);
+  transition: width 0.22s ease;
 }
 
-/* --- Mobile Button --- */
+.nav-link:hover,
+.nav-link.is-active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.nav-link.is-active::after,
+.nav-link:hover::after {
+  width: 62%;
+}
+
 .mobile-btn {
   display: none;
-}
-
-.mobile-btn button {
-  background: none;
-  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.35rem;
   cursor: pointer;
 }
 
-/* --- Mobile Dropdown --- */
-.mobile-dropdown {
+.mobile-menu {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0,0,0,0.95);
-  backdrop-filter: blur(12px);
+  inset: 0;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 4rem;
-  overflow-y: auto;
-  z-index: 9999;
+  gap: 0.2rem;
+  padding: 4.8rem 1rem 1.2rem;
+  background: linear-gradient(180deg, rgba(3, 7, 16, 0.96), rgba(5, 10, 20, 0.98));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
-.mobile-dropdown a {
+.mobile-menu__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   color: #fff;
-  text-decoration: none;
-  padding: 1rem 0;
-  width: 100%;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.mobile-menu__link {
+  display: block;
+  padding: 1rem 0.9rem;
+  border-radius: 14px;
   text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  font-size: 15px;
-  transition: 0.3s;
+  text-decoration: none;
+  color: rgba(235, 243, 255, 0.84);
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid transparent;
 }
 
-.mobile-dropdown a:hover {
-  background: rgba(0,180,255,0.15);
+.mobile-menu__link.is-active,
+.mobile-menu__link:hover {
+  color: #ffffff;
+  background: rgba(92, 225, 255, 0.08);
+  border-color: rgba(92, 225, 255, 0.2);
 }
 
-/* 🔥 RESPONSIVE FIX (MAIN FIX) */
+@media (max-width: 1024px) {
+  .nav-shell {
+    padding-inline: 1rem;
+  }
+
+  .nav-links {
+    gap: 0.2rem;
+  }
+
+  .nav-link {
+    padding-inline: 0.75rem;
+    font-size: 0.88rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .nav-shell {
+    padding: 0.8rem 0.9rem;
+  }
 
-  /* hide links */
   .nav-links {
     display: none !important;
   }
 
-  /* show hamburger */
   .mobile-btn {
-    display: block;
+    display: inline-grid;
+    place-items: center;
   }
 
-  /* navbar compact */
-  .nav {
-    padding: 0.7rem 1rem;
+  .brand {
+    min-width: 0;
   }
 
-  .nav-name h1 {
-    font-size: 12px;
+  .brand-copy h1 {
+    font-size: 0.92rem;
   }
 
-  .nav-tagline {
-    font-size: 10px;
+  .brand-copy div {
+    font-size: 0.72rem;
   }
-}
-
-.nav-links a {
-  position: relative;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 2px;
-  background: var(--accent);
-  transition: 0.3s ease;
-}
-
-.nav-links a.active::after {
-  width: 100%;
 }

@@ -1,18 +1,19 @@
 .blog-section {
   width: 100%;
-  padding: 3rem 8%;
+  padding: 4rem 8%;
   color: white;
   text-align: center;
 }
 
 .blog-title {
-  font-size: 2rem;
+  font-size: clamp(2rem, 3vw, 2.8rem);
   margin-bottom: 0.2rem; /* less top margin */
-  color: #fff;
+  color: #eef4ff;
+  font-weight: 800;
 }
 
 .blog-sub {
-  color: #aaa;
+  color: rgba(232, 240, 255, 0.72);
   margin-bottom: 2rem;
   font-size: 1rem;
 }
@@ -25,11 +26,13 @@
 }
 
 .blog-post {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(148, 197, 255, 0.12);
+  border-radius: 20px;
   padding: 1.8rem;
   width: 100%;
   text-align: left;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
@@ -40,7 +43,7 @@
 }
 
 .post-text {
-  color: #ccc;
+  color: rgba(232, 240, 255, 0.74);
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -54,11 +57,11 @@
 }
 
 .vote-btn-circle {
-  background: rgba(255, 255, 255, 0.05);
-  border: none;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(148, 197, 255, 0.1);
   border-radius: 50%;
   padding: 0.8rem;
-  color: #ddd;
+  color: #dfe9ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,19 +72,19 @@
 }
 
 .vote-btn-circle:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(92, 225, 255, 0.08);
 }
 
 .vote-btn-circle.active.agree {
-  background: rgba(0, 255, 130, 0.15);
-  color: #00ff82;
-  box-shadow: 0 0 10px rgba(0, 255, 130, 0.4);
+  background: rgba(38, 214, 167, 0.16);
+  color: #8ef6ff;
+  box-shadow: 0 0 12px rgba(38, 214, 167, 0.25);
 }
 
 .vote-btn-circle.active.disagree {
-  background: rgba(255, 0, 70, 0.15);
-  color: #ff0050;
-  box-shadow: 0 0 10px rgba(255, 0, 70, 0.4);
+  background: rgba(124, 92, 255, 0.16);
+  color: #d6c9ff;
+  box-shadow: 0 0 12px rgba(124, 92, 255, 0.24);
 }
 
 .vote-btn-circle:disabled {
@@ -93,5 +96,5 @@
   position: absolute;
   bottom: -0.5rem;
   font-size: 0.7rem;
-  color: #aaa;
+  color: rgba(232, 240, 255, 0.64);
 }

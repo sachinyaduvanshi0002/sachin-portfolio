@@ -1,20 +1,22 @@
 :root {
-  --accent: #007bff;
-  --bg-card: #111;
-  --bg-cert: #1a1a1a;
-  --text-main: #fff;
-  --text-muted: #bbb;
+  --accent: #5ce1ff;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-cert: rgba(255, 255, 255, 0.05);
+  --text-main: #eef4ff;
+  --text-muted: rgba(232, 240, 255, 0.72);
 }
 
 .certs-section {
-  padding: 40px 0;
+  padding: 56px 0;
   min-height: auto;
 }
 
 .certs-card {
-  background: var(--bg-card);
-  border-radius: 12px;
-  padding: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border-radius: 24px;
+  padding: 28px;
+  border: 1px solid rgba(148, 197, 255, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
 }
 
 .certs-card h2 {
@@ -35,17 +37,18 @@
 
 .tab {
   padding: 8px 18px;
-  border-radius: 8px;
+  border-radius: 999px;
   border: none;
   cursor: pointer;
-  background: #333;
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text-main);
   font-weight: 500;
   transition: 0.3s;
 }
 
 .tab.active {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #7c5cff);
+  color: #04101b;
 }
 
 .certs-grid {
@@ -57,15 +60,17 @@
 
 .cert.card {
   background: var(--bg-cert);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 18px;
+  padding: 18px;
   color: var(--text-main);
+  border: 1px solid rgba(148, 197, 255, 0.12);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
 }
 
 .cert.card img {
   width: 100%;
   height: 160px;
-  border-radius: 10px;
+  border-radius: 14px;
   object-fit: cover;
   margin-bottom: 12px;
 }
@@ -82,12 +87,13 @@
 
 .cert.card .btn {
   margin-top: 12px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #7c5cff);
   border: none;
-  color: #fff;
-  border-radius: 6px;
-  padding: 6px 14px;
+  color: #04101b;
+  border-radius: 999px;
+  padding: 8px 16px;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .modal {
@@ -96,7 +102,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(3, 7, 16, 0.84);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,6 +112,6 @@
 .modal img {
   max-width: 90%;
   max-height: 85%;
-  border-radius: 10px;
-  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
 }
