@@ -7,7 +7,7 @@ const AboutMe = () => {
     <div
       id="about"
       style={{
-        minHeight: "100vh",
+        minHeight: "auto",
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -15,7 +15,7 @@ const AboutMe = () => {
         justifyContent: "center",
         // background: "radial-gradient(circle at top, #0d0d0d, #000)",
         color: "white",
-        padding: "3rem 1rem",
+        padding: "clamp(2.5rem, 5vw, 4rem) 1rem",
       }}
     >
       {/* --- About Me + Education Section --- */}

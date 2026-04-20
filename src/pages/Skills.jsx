@@ -123,7 +123,7 @@ export default function Skills() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h2 id="skills" className="text-5xl text-cyan-400 font-semibold mb-3">
+        <h2 className="text-5xl text-cyan-400 font-semibold mb-3">
           My Skills
         </h2>
         <div className="w-28 h-[2px] bg-cyan-400 mx-auto mb-6"></div>
@@ -141,7 +141,6 @@ export default function Skills() {
         transition={{ duration: 1.2, ease: "easeOut" }}
         style={{
           width: "100%",
-          height: "550px",
           borderRadius: "25px",
           background: "radial-gradient(circle at 50% 50%, #0a0a0a, #101010)",
           overflow: "hidden",

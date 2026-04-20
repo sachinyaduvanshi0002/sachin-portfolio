@@ -92,3 +92,27 @@
   color: #9feaff;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 2.5rem 1rem 3.5rem;
+  }
+
+  .contact-links {
+    gap: 16px;
+    margin-bottom: 1.6rem;
+  }
+
+  .social-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .contact-form {
+    max-width: 100%;
+  }
+
+  .contact-btn {
+    width: 100%;
+  }
+}

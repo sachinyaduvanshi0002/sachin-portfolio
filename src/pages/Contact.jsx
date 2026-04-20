@@ -67,12 +67,12 @@ export default function Contact() {
   };
 
   const quickLinks = [
-    { img: githubLogo, link: 'https://github.com/sachinyaduvanshi0002/' },
-    { img: linkedinLogo, link: 'https://www.linkedin.com/in/sachin-kumar-42756a364' },
-    { img: gmailLogo, link: 'mailto:sachincseiot@gmail.com' },
-    { img: whatsappLogo, link: 'https://wa.me/917549171480' },
-    { img: instagramLogo, link: 'https://www.instagram.com/sachin_yaduvanshi0002/' },
-    { img: facebookLogo, link: 'https://www.facebook.com/profile.php?id=100054782516915' },
+    { title: 'GitHub', img: githubLogo, link: 'https://github.com/sachinyaduvanshi0002/' },
+    { title: 'LinkedIn', img: linkedinLogo, link: 'https://www.linkedin.com/in/sachin-kumar-42756a364' },
+    { title: 'Email', img: gmailLogo, link: 'mailto:sachincseiot@gmail.com' },
+    { title: 'WhatsApp', img: whatsappLogo, link: 'https://wa.me/917549171480' },
+    { title: 'Instagram', img: instagramLogo, link: 'https://www.instagram.com/sachin_yaduvanshi0002/' },
+    { title: 'Facebook', img: facebookLogo, link: 'https://www.facebook.com/profile.php?id=100054782516915' },
   ];
 
   return (

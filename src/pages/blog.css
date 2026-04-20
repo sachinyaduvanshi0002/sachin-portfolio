@@ -98,3 +98,23 @@
   font-size: 0.7rem;
   color: rgba(232, 240, 255, 0.64);
 }
+
+@media (max-width: 1024px) {
+  .blog-section {
+    padding: 3.2rem 4%;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-section {
+    padding: 2.6rem 1rem;
+  }
+
+  .blog-post {
+    padding: 1.2rem;
+  }
+}

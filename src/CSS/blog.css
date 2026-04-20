@@ -96,3 +96,17 @@
   font-size: 0.7rem;
   color: #aaa;
 }
+
+@media (max-width: 768px) {
+  .blog-section {
+    padding: 2.75rem 1rem;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-post {
+    padding: 1.25rem;
+  }
+}

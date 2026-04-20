@@ -1,15 +1,23 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "../CSS/experience.css";
+import "../CSS/Experience.css";
 
 export default function Experience() {
   const experiences = [
     {
-      role: "Data Analysis Intern",
-      company: "Cognifyz Technologies",
-      duration: "Feb 2026",
+      role: "Artificial Intelligence and Generative AI",
+      company: "YBI Foundation",
+      duration: "April 2026 - May 2026",
       description:
         "Working on real-world data analysis and visualization projects, transforming raw datasets into actionable insights. Developed interactive dashboards using Power BI and SQL to support data-driven decision-making and improve business performance.",
+      certificate: "#",
+    },
+    {
+      role: "Data Analysis Intern",
+      company: "Cognifyz Technologies",
+      duration: "March 2026 - April 2026",
+      description:
+        "Artificial Intelligence and Generative AI: Skilled in applying AI concepts and leveraging generative AI tools to solve problems, automate tasks, and build intelligent solutions. 🚀",
       certificate: "#",
     },
     {

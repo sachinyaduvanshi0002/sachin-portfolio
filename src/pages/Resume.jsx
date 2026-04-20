@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Resume() {
+  const resumePath = "/resume.pdf";
+  const [useRemoteViewer, setUseRemoteViewer] = useState(false);
+
+  const googleViewerUrl = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    const absoluteResumeUrl = `${window.location.origin}${resumePath}`;
+    return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(absoluteResumeUrl)}`;
+  }, []);
+
+  useEffect(() => {
+    const updateViewerMode = () => {
+      const isNarrow = window.innerWidth <= 1024;
+      const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+      setUseRemoteViewer(isNarrow || isCoarsePointer);
+    };
+
+    updateViewerMode();
+    window.addEventListener("resize", updateViewerMode);
+
+    return () => window.removeEventListener("resize", updateViewerMode);
+  }, []);
+
   return (
-    <section id="resume" className="container" style={{ padding: "60px 0" }}>
+    <section id="resume" className="container" style={{ padding: "clamp(3rem, 6vw, 4rem) 0" }}>
       <motion.div
         className="card"
         initial={{ opacity: 0, y: 40 }}
@@ -55,7 +77,7 @@ export default function Resume() {
             <h3 style={{ fontSize: 24, color: "#00b4ff", marginBottom: 4 }}>
               👨‍💻 SACHIN KUMAR
             </h3>
-            <p style={{ margintop: 10, fontSize: 15, color: "#ccc" }}>
+            <p style={{ marginTop: 10, fontSize: 15, color: "#ccc" }}>
               B.Tech — Computer Science & Engineering
             </p>
             <p style={{ margin: "4px 0", fontSize: 14, color: "#aaa" }}>
@@ -219,26 +241,32 @@ export default function Resume() {
 
         {/* PDF Viewer */}
         <motion.div
+          className="resume-viewer"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          style={{
-            marginTop: 50,
-            borderRadius: 12,
-            overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.1)",
-          }}
         >
-          <iframe
-            src="/resume.pdf"
-            title="Sachin kumar Resume"
-            style={{
-              width: "100%",
-              height: "650px",
-              border: "none",
-              background: "#111",
-            }}
-          />
+          {useRemoteViewer ? (
+            <iframe
+              src={googleViewerUrl || resumePath}
+              title="Sachin Kumar Resume"
+              className="resume-viewer__pdf"
+            />
+          ) : (
+            <object data={`${resumePath}#view=FitH`} type="application/pdf" className="resume-viewer__pdf" aria-label="Resume preview">
+              <iframe
+                src={googleViewerUrl || resumePath}
+                title="Sachin Kumar Resume"
+                className="resume-viewer__pdf"
+              />
+            </object>
+          )}
+
+          <div className="resume-viewer__fallback">
+            <a href={resumePath} target="_blank" rel="noreferrer" className="btn">
+              Open Resume in New Tab
+            </a>
+          </div>
         </motion.div>
 
         {/* Download Button */}
