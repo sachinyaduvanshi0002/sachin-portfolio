@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import "../CSS/Home.css"
 
 // Assets
-import photo from '../../public/photo.jpg'
+import photo from '/sachin_dp.png'
 import githubLogo from '../../public/github.png'
 import linkedinLogo from '../../public/linkedin.png'
 import gmailLogo from '../../public/gmail.png'

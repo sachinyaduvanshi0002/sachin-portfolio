@@ -13,8 +13,8 @@ export default function Experience() {
       certificate: "#",
     },
     {
-      role: "Data Analysis Intern",
-      company: "Cognifyz Technologies",
+      role: "Full Stack Web Development",
+      company: "Edulogy Institute",
       duration: "March 2026 - April 2026",
       description:
         "Artificial Intelligence and Generative AI: Skilled in applying AI concepts and leveraging generative AI tools to solve problems, automate tasks, and build intelligent solutions. 🚀",
