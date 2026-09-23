@@ -17,7 +17,7 @@ export default function Experience() {
       company: "Edulogy Institute",
       duration: "March 2026 - April 2026",
       description:
-        "Artificial Intelligence and Generative AI: Skilled in applying AI concepts and leveraging generative AI tools to solve problems, automate tasks, and build intelligent solutions. 🚀",
+        "Developed full-stack web applications using modern technologies like React, Node.js, and MongoDB. Gained experience in building scalable and maintainable web solutions from concept to deployment. 🚀",
       certificate: "#",
     },
     {
